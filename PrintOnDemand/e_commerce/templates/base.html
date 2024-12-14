@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a></li>
+        <a href="{% url 'user_login' %}">Login</a></li>
+        <a href="{% url 'customer_register' %}">Register</a></li>
+        <a href="{% url 'profile' %}">Profile</a></li>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

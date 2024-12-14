@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Website</title>
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Your Website</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'user_login' %}">Login</a></li>
+            <li><a href="{% url 'customer_register' %}">Register</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Welcome to Your Website</h1>
+            <p>"Connecting the world, one click at a time."</p>
+            <p>"Discover, connect, and grow with us!"</p>
+            <div class="buttons">
+                <a href="{% url 'customer_register' %}" class="btn primary-btn">Get Started</a>
+                <a href="{% url 'user_login' %}" class="btn secondary-btn">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quotes Section -->
+    <section class="quotes">
+        <h2>What Makes Us Special</h2>
+        <div class="quote-container">
+            <div class="quote-card">
+                <p>"Empowering businesses with modern solutions."</p>
+            </div>
+            <div class="quote-card">
+                <p>"A platform designed for both customers and sellers."</p>
+            </div>
+            <div class="quote-card">
+                <p>"Your success, our mission."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

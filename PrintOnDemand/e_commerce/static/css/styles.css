@@ -1,0 +1,70 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #007bff; /* Blue background for the navbar */
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.navbar a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+/* Optional: Add responsiveness for small screens */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column; /* Stack the links vertically */
+        align-items: flex-start;
+    }
+    .navbar ul li {
+        margin-bottom: 10px;
+    }
+}
+
+/* Additional Styling for Content */
+.container {
+    margin-top: 60px; /* Add space for the fixed navbar */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
