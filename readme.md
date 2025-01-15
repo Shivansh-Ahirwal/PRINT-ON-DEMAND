@@ -1,7 +1,3 @@
-Here's a comprehensive **README.md** for your **Print-On-Demand** project with beginner-friendly instructions.
-
----
-
 # Print-On-Demand E-commerce Project
 
 This is a Django-based e-commerce application for managing categories, products, and orders. The project is designed with a beginner-friendly structure and is easy to set up.
