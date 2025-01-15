@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+    <h1>{{cart_data.user}} Cart</h1>
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="cart-items">
+            {% for item in cart_data.items %}
+            <tr data-item-id="{{ item.product_id }}">
+                <td>
+                    <div class="product-info">
+                        <img src="{{ item.product_image }}" alt="{{ item.product_name }}">
+                        <span>{{ item.product_name }}</span>
+                    </div>
+                </td>
+                <td>
+                    <input type="number" value="{{ item.quantity }}" min="1" class="quantity-input" 
+                           data-product-id="{{ item.product_id }}" onchange="updateQuantity(this)">
+                </td>
+                <td>₹{{ item.price }}</td>
+                <td class="total-price">₹{{ item.total_price }}</td>
+                <td>
+                    <form method="post" action="{% url 'remove_from_cart' item.product_id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="cart-summary">
+        <h2>Total: ₹<span id="total-price">{{ cart_data.total_price }}</span></h2>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function updateQuantity(inputElement) {
+        const productId = inputElement.getAttribute('data-product-id');
+        const newQuantity = inputElement.value;
+
+        fetch(`/update_cart_quantity/${productId}/?quantity=${newQuantity}`, {
+            method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update the total price for the item
+            const totalCell = inputElement.closest('tr').querySelector('.total-price');
+            totalCell.textContent = '₹' + data.new_total_price;
+
+            // Update the overall total price
+            updateCartTotal();
+        });
+    }
+
+    function updateCartTotal() {
+        let total = 0;
+        const totalCells = document.querySelectorAll('.total-price');
+        totalCells.forEach(cell => {
+            const price = parseFloat(cell.textContent.replace('₹', '').trim());
+            total += price;
+        });
+        
+        // Update the displayed total in the cart-summary
+        document.getElementById('total-price').textContent = total.toFixed(2);
+    }
+
+    // Initial call to set the correct total when the page loads
+    updateCartTotal();
+</script>
+{% endblock %}

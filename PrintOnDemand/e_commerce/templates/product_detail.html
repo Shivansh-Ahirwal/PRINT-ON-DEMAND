@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="product-container">
+    <div class="product-card">
+        <div class="left-container">
+            {% if product.product_image %}
+            <img src="{{ product.product_image }}" alt="{{ product.name }}">
+            {% else %}
+            <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+            {% endif %}
+        </div>
+        <div class="right-container">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <div class="price">₹{{ product.price }}</div>
+            {% if product.category %}
+            <div class="category">Category: <span>{{ product.category }}</span></div>
+            {% endif %}
+            <div class="added-by">
+                Sold by: <span>{{ product.added_by }}</span>
+            </div>
+            
+            <!-- Add to Cart Button -->
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

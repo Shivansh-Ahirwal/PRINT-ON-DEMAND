@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Trending Products{% endblock %}
+
+{% block content %}
+<div class="category-container">
+    <h1>Trending Products"</h1>
+    <div class="Product_list" style="display: flex;">
+        {% for product in product_data %}
+        <div class="products">
+            <a href="{% url 'product_detail' pk=product.id %}">
+                {% if product.product_image %}
+                    <img src="{{ product.product_image }}" alt="{{ product.name }}">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+            </a>
+            <h3>{{ product.name }}</h3>
+            <p>Price: ₹{{ product.price }}</p>
+        </div>
+        {% endfor %} 
+    </div>
+</div>
+{% endblock %}

@@ -4,30 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{% block title %}Snazzy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
 </head>
 <body>
-
-    <!-- Navbar Section -->
-    <nav class="navbar">
-        <a href="{% url 'home' %}">Home</a></li>
-        <a href="{% url 'user_login' %}">Login</a></li>
-        <a href="{% url 'customer_register' %}">Register</a></li>
-        <a href="{% url 'profile' %}">Profile</a></li>
-    </nav>
-
-    <!-- Main Content Area -->
-    <div class="container">
-        {% block content %}
-        <!-- Content goes here -->
-        {% endblock %}
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="container1">
+            <div class="menu">
+                <img src="{% static 'svg/menu.svg' %}" alt="">
+            </div>
+            <h2><a href="{% url 'home' %}" id="website-name">Snazzy</a></h2>
+            <div class="search">
+                <input type="text" placeholder="Search for products">
+                <img src="{% static 'svg/search.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="container2">
+            <div class="signin">
+                <a href="{% url 'signin' %}" style="color: black; margin-right: 10px;">Sign in</a>
+            </div>
+            <div class="signup">
+                <a href="{% url 'signup' %}" style="color: black; margin-right: 10px;">Sign up</a>
+            </div>
+            <div class="signout">
+                <a href="{% url 'signout' %}" style="color: black; margin-right: 10px;">Sign Out!</a>
+            </div>
+            <div class="shopping">
+                <a href="{% url 'view_cart' %}"><img src="{% static 'svg/shopping.svg' %}" alt=""></a>
+            </div>
+        </div>
     </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    <!-- Main Content -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block scripts %}
+    <!-- Scripts will go here -->
+    {% endblock %}
+    <!-- Footer -->
+    <footer class="footer">
+        <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="mailto:snazzy423@gmail.com">snazzy423@gmail.com</a></li>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Community Guidelines</a></li>
+        </ul>
+        <ul>
+            <li><a href="/admin/">Admin</a></li>
+            <li><a href="#">Track my order</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Sitemap</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Zazzle Ideas</a></li>
+        </ul>
     </footer>
-
 </body>
 </html>
